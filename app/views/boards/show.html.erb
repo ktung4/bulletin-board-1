@@ -1,0 +1,63 @@
+<div>
+  <div>
+    <h1>
+      <%= @the_board.name %> 
+    </h1>
+
+    <hr>
+  </div>
+</div>
+
+<hr>
+
+<h2>Add a new post</h2>
+
+<form action="/inst_post" method="post">
+  <div>
+  <label for="title_field">Title</label>
+  <input id="title_field" type = "text" name="title">
+  </div>
+
+  <div>
+  <label for="body_field">Body</label>
+  <textarea name="body" id="body_field" cols="30" rows="10"></textarea>
+  </div>
+
+  <div>
+  <label for="expires_on_field">Expires on</label>
+  <input type="date" id="expires_on_field" name="expires_on">
+  </div>
+
+  <div>
+  <label for="board_id_field">Board ID</label>
+  <input type="text" id="board_id_field" name="board_id">
+  </div>
+
+  <button>
+  Add post
+  </button>
+</form>
+
+<h2>Active posts</h2>
+
+<% matching_posts = Post.where({:board_id => @the_board.id})%>
+
+
+<table>
+<tr>
+<th>Title</th>
+<th>Body</th>
+<th>Posted on</th>
+<th>Expires on</th>
+</tr>
+
+<% matching_posts.each do |a_post|%>
+<tr>
+<td><%=a.post.title %></td>
+<td><%=a.post.body %></td>
+<td><%=a.post.created_at %></td>
+<td><%=a.post.expires_on %></td>
+</tr>
+<% end %>
+
+</table>
